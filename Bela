@@ -1,0 +1,62 @@
+using System;
+
+namespace Bela_CaparC
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Define variables and read # of hands and dominant suit from input
+            string[] hs = Console.ReadLine().ToUpper().Split(" ");
+            int hands = Convert.ToInt32(hs[0]);
+            char dominantsuit = hs[1][0];
+            int score = 0;
+
+            //Set up for loop and add up points
+            for (int x = 0; x < hands * 4; x++)
+            {
+                string cards = Console.ReadLine();
+                switch (cards[0])
+                {
+                    case 'A':
+                        score += 11;
+                        break;
+                    case 'K':
+                        score += 4;
+                        break;
+                    case 'Q':
+                        score += 3;
+                        break;
+                    case 'T':
+                        score += 10;
+                        break;
+                    case 'J':
+                        if (cards[1] == dominantsuit)
+                        {
+                            score += 20;
+                        }
+                        else
+                        {
+                            score += 2;
+                        }
+
+                        break;
+                    case '9':
+                        if (cards[1] == dominantsuit)
+                        {
+                            score += 14;
+                        }
+                        else
+                        {
+                            score += 0;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //Print score
+            Console.WriteLine(score);
+        }
+    }
+}
